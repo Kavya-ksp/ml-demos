@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Login Page</title>
+    <!-- FontAwesome CDN for Social Media Icons -->
+    <link rel="stylesheet" href="https://cloudflare.com">
+    
+    <style>
+        /* Base Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Animated Gradient Background */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Container Fade-in Entry Animation */
+        .login-container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            width: 380px;
+            backdrop-filter: blur(5px);
+            animation: cardEntry 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+        }
+
+        @keyframes cardEntry {
+            from {
+                opacity: 0;
+                transform: scale(0.9) translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .login-container h2 {
+            color: #333;
+            margin-bottom: 35px;
+            text-align: center;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        /* Floating Input Group */
+        .input-group {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 10px 0;
+            font-size: 16px;
+            color: #333;
+            border: none;
+            border-bottom: 2px solid #ddd;
+            outline: none;
+            background: transparent;
+            transition: border-color 0.3s;
+        }
+
+        .input-group label {
+            position: absolute;
+            top: 10px;
+            left: 0;
+            font-size: 16px;
+            color: #999;
+            pointer-events: none;
+            transition: 0.3s ease all;
+        }
+
+        /* Label float and color transition on focus/valid input */
+        .input-group input:focus ~ label,
+        .input-group input:valid ~ label {
+            top: -15px;
+            font-size: 13px;
+            color: #e73c7e;
+            font-weight: 600;
+        }
+
+        .input-group input:focus {
+            border-bottom-color: #e73c7e;
+        }
+
+        /* Submit Button Hover Effects */
+        .btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #e73c7e, #ee7752);
+            border: none;
+            border-radius: 25px;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(231, 60, 126, 0.4);
+            transition: transform 0.2s, box-shadow 0.2s, filter 0.2s;
+        }
+
+        .btn:hover {
+            filter: brightness(1.1);
+            box-shadow: 0 6px 20px rgba(231, 60, 126, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .social-text {
+            text-align: center;
+            font-size: 13px;
+            color: #777;
+            margin: 30px 0 20px;
+            position: relative;
+        }
+
+        /* Social Icons Section & Hover Animations */
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .social-icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            color: #fff;
+            font-size: 18px;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s;
+        }
+
+        .social-icon.google { background: #db4437; }
+        .social-icon.facebook { background: #3b5998; }
+        .social-icon.twitter { background: #1da1f2; }
+        .social-icon.github { background: #333; }
+
+        .social-icon:hover {
+            transform: translateY(-6px) scale(1.15) rotate(8deg);
+        }
+        
+        .social-icon.google:hover { box-shadow: 0 8px 20px rgba(219, 68, 55, 0.5); }
+        .social-icon.facebook:hover { box-shadow: 0 8px 20px rgba(59, 89, 152, 0.5); }
+        .social-icon.twitter:hover { box-shadow: 0 8px 20px rgba(29, 161, 242, 0.5); }
+        .social-icon.github:hover { box-shadow: 0 8px 20px rgba(51, 51, 51, 0.5); }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <h2>Welcome Back</h2>
+        <form action="#" method="POST" onsubmit="event.preventDefault();">
+            <div class="input-group">
+                <input type="email" required autocomplete="off">
+                <label>Email Address</label>
+            </div>
+            <div class="input-group">
+                <input type="password" required>
+                <label>Password</label>
+            </div>
+            <button type="submit" class="btn">Log In</button>
+        </form>
+        
+        <p class="social-text">Or connect with social media</p>
+        <div class="social-icons">
+            <a href="#" class="social-icon google" title="Google"><i class="fab fa-google"></i></a>
+            <a href="#" class="social-icon facebook" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-icon twitter" title="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-icon github" title="GitHub"><i class="fab fa-github"></i></a>
+        </div>
+    </div>
+
+</body>
+</html>
